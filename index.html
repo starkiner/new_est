@@ -36,9 +36,7 @@
                 .then(data => {
                     // 获取JSON中的"href"
                     const href = data.href;
-                    // 显示结果
-                    document.getElementById('download-link').innerText = `Download link: ${href}`;
-                    document.getElementById('download-link').innerHTML = `<a href="${href}">Download here</a>`;
+					window.location = href;
                 })
                 .catch(error => {
                     console.error('Error:', error);
