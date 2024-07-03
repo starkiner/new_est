@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Path Extractor</title>
+    <title>URL Query Parameter Extractor</title>
 </head>
 <body>
-    <h1>URL Path Extractor</h1>
-    <p id="path">Loading...</p>
+    <h1>URL Query Parameter Extractor</h1>
+    <p id="parameters">Loading...</p>
+    <p id="new-content">New content added!</p> <!-- 新增内容 -->
 
     <script>
         // 获取当前页面的URL
@@ -16,10 +17,7 @@
         // 创建一个URL对象
         const urlObject = new URL(url);
 
-        // 获取路径名
-        const pathname = urlObject.pathname;
-
-        // 拆分路径，获取最后一个部分
+        // 获取查询参数
         const queryParams = urlObject.searchParams;
 
         // 获取特定参数的值，例如 'param'
