@@ -20,13 +20,13 @@
         const pathname = urlObject.pathname;
 
         // 拆分路径，获取最后一个部分
-        const pathParts = pathname.split('/');
+        const queryParams = urlObject.searchParams;
 
-        // 获取最后一个部分
-        const lastPart = pathParts[pathParts.length - 1];
+        // 获取特定参数的值，例如 'param'
+        const paramValue = queryParams.get('param');
 
         // 显示结果
-        document.getElementById('path').innerText = `The last part of the URL path is: ${lastPart}`;
+        document.getElementById('parameters').innerText = `The value of 'param' is: ${paramValue}`;
     </script>
 </body>
 </html>
