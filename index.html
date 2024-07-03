@@ -8,7 +8,7 @@
 <body>
     <h1>URL Query Parameter Extractor</h1>
     <p id="parameters">Loading...</p>
-    <p id="new-content">New content added!</p> <!-- 新增内容 -->
+    <p id="download-link">Fetching download link...</p>
 
     <script>
         // 获取当前页面的URL
@@ -23,8 +23,31 @@
         // 获取特定参数的值，例如 'param'
         const paramValue = queryParams.get('param');
 
-        // 显示结果
-        document.getElementById('parameters').innerText = `The value of 'param' is: ${paramValue}`;
+        if (paramValue) {
+            // 显示参数值
+            document.getElementById('parameters').innerText = `The value of 'param' is: ${paramValue}`;
+
+            // 构建新的请求URL
+            const apiUrl = `https://cloud-api.yandex.net:443/v1/disk/public/resources/download?public_key=${paramValue}`;
+
+            // 发送请求获取JSON数据
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    // 获取JSON中的"href"
+                    const href = data.href;
+                    // 显示结果
+                    document.getElementById('download-link').innerText = `Download link: ${href}`;
+                    document.getElementById('download-link').innerHTML = `<a href="${href}">Download here</a>`;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('download-link').innerText = 'Failed to fetch download link.';
+                });
+        } else {
+            document.getElementById('parameters').innerText = 'No "param" query parameter found.';
+            document.getElementById('download-link').innerText = '';
+        }
     </script>
 </body>
 </html>
